@@ -1,0 +1,53 @@
+﻿/** tableSort **/
+.tableSort{position:relative; width:100%; color:#555; font-size:12px;}
+.tableSort ul{margin:0px; padding:0px;}
+.tableSort li{margin:0px; padding:0px; list-style-type:none;}
+
+
+/** conbar **/
+.tableSort .conbar{position:absolute; top:25px; right:10px; color:#4EA6DA}
+.tableSort .conbar li{float:left; margin-left:8px; cursor:pointer}
+.tableSort .conbar li:hover{color:#FF6600}
+.tableSort .conbar .clean{display:none;}
+.tableSort .conbar .more{background-image: url(../images/more.gif);background-repeat: no-repeat;background-position: right 0px; padding-right:13px;}
+.tableSort .conbar .more2{background-position: right -17px;}
+
+/** feedback **/
+.tableSort .feedback{float:right; color:#F88A87; border:#F88A87 dotted 1px; padding:0px 5px;}
+.tableSort .feedback{margin-right:5px; margin-top:5px; cursor:pointer; background-color:#f6f6f6;}
+.tableSort .feedsucc{color:#33FF99; border:#33FF99 dotted 1px;}
+
+/** select **/
+.tableSort .select{padding:10px;}
+.tableSort .select li{line-height:20px;margin:0px; padding:0px;}
+.tableSort .select .hide{display:none;}
+.tableSort .select .name{font-weight:bold; cursor:default;}
+.tableSort .select label{cursor:pointer; margin-right:3px; vertical-align:middle}
+.tableSort .select input{vertical-align:middle; margin-top:-2px;margin-top:-3px\9; margin-right:3px;}
+.tableSort .select .all{ padding:1px 3px;}
+.tableSort .select .seled{ background-color:#4F9FDF; color:#FFFFFF;}
+
+/** head **/
+.tableSort .head{ height:30px;background-color:#E6F5FF; border-bottom:#9BDAFF solid 1px; overflow:hidden;}
+.tableSort .head ul{padding-left:6px; font-size:13px;}
+.tableSort .head li{float:left; margin-top:5px;}
+.tableSort .head li:first-child{padding-left:12px;}
+.tableSort .head .head_sort{background-image: url(../images/bg.gif);background-repeat: no-repeat;background-position: right -3px;cursor:pointer;padding-right:12px;}
+.tableSort .head .head_asc{background-position: right -16px; }
+.tableSort .head .head_desc{background-position: right -29px; }
+.tableSort .head .head_over{color:#FF6600}
+
+
+/** fixed **/
+.tableSort .fixed{display:none; position:fixed; top:0px; margin-left:-15px; border-left:#9BDAFF solid 1px; padding-left:15px; padding-right:15px;border-right:#9BDAFF solid 1px;}
+
+
+/** item **/
+.tableSort .items{}
+.tableSort .items li{font-size:13px; padding:5px 0px; padding-left:18px; border-bottom:#eee  solid 1px; vertical-align:middle;}
+.tableSort .items li{padding-top:10px;}
+.tableSort .items li:hover{background-color:#F7F7F7;}
+.tableSort .items .hon{background-color:#F7F7F7;}
+.tableSort .items .more{background-image: url(../images/more.gif);background-repeat: no-repeat;background-position: 30px 3px; padding-right:13px; height:20px; margin-top:2px; cursor:pointer}
+.tableSort .items .more2{background-position: 30px -15px;}
+.tableSort .items  .hide{display:none;}

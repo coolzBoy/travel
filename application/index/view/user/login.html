@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+	<meta charset="UTF-8"> 
+	<title>用户登录</title>
+	<meta name="viewport" content="width=divice-width,initial-scale=1.0,minimum-scale=1.0,maximum=1.0,user-scalable=no" />
+	<meta http-equiv=X-UA-Compatible content=IE=8/>
+	<link rel="stylesheet" href="/static/index/css/normalize.css" type="text/css" />
+	<link rel="stylesheet" href="/static/index/css/font-awesome.min.css" type="text/css" />
+	
+	<link rel="stylesheet" href="/static/index/css/login.css" type="text/css" />
+
+	<script src="/static/index/js/jquery-1.11.3.js"></script>
+	
+	<script src="/static/index/js/angular.min.js"></script>
+	<!-- 三方登录引入 -->
+	<script src="http://open.51094.com/user/myscript/1596387777c749.html"></script>
+
+</head>
+<body>
+	<div class="wrap" id="wrap">
+		<div class="logo" id="logo">
+			<a href="{:url('index/index/index')}">
+				<img src="/static/index/images/logo.jpg" title="中国梦想游">
+			</a>
+		</div>
+		<div class="register-wrap" id="register-wrap">
+			<div class="pic" id="pic">
+				<img src="/static/index/images/dl_bg1.jpg" />
+			</div>
+			<div class="register" id="register">
+				<div class="register-top" id="reg-top">
+					<h2 class="normal" id="normal">普通登录</h2>
+					<h2 class="nopassword" id="nopw">手机号动态登录</h2>
+					<a  id="qrcode" href="#"></a>
+				</div>
+
+				<!--普通登录-->
+				<div class="register-con" id="rc">
+					<form action="{:url('/index/user/doLogin')}" method="post" id="lg">
+						<ul>
+							<li id="rc-inner-num">
+							<i></i> 
+							<span>请输入用户名/手机号/邮箱</span>
+							</li>
+							<li id="rc-inner-virity">
+								<i></i>
+								<span>请输入密码</span>
+							</li>
+							<li id="rc-innerError" style="width:300px;
+								height:32px;
+								padding:0 6px;
+								color:#ff1877;
+								border:1px solid #ffd797;
+								display:none;">
+								<i style="display:inline-block;
+									float:left;
+									width:20px;
+									height:20px;
+									margin:6px 10px;
+									border:none;
+									background:url(/static/index/images/bz_16x16.png) no-repeat 0 0;"></i>
+								<span style="color:#ff1877;
+								display:inline-block;
+								float:left;
+								line-height:26px;">您输入的用户名或密码不正确</span>
+							</li>
+							<li class="form-group">
+								<input type="text" name="phone-num" class="form-control" placeholder="用户名/手机号/邮箱"/>
+								<span class="fa fa-check success" style="display:none;color:green;position:relative;left:-25px;top:5px;"></span>
+								<span style="display:none;color:green;">用户名正确</span>
+								
+							</li>
+							<li class="form-group">
+								<input type="password" name="password" id="pass" class="form-control" placeholder="密码"/>
+								<span class="fa fa-check success" style="display:none;color:green;position:relative;left:-25px;top:5px;"></span>
+								<span style="display:none;color:green;">密码正确</span>
+								
+							</li>
+							
+							<li>
+								<button class="submit" type="submit" id="login-btn" style="border-radius:5px;">立即登录</button>
+							</li>
+							<li>
+								<a href="#"><font color="#ff6600">忘记密码？</font></a>
+								<a href="{:url('index/user/register')}" class="zhuce"><font color="#ff6600">新用户注册</font></a>
+							</li>
+							<li class="zjdl">
+								其他方式登录
+							</li>
+							
+						</ul>
+					</form>	
+					<div id="hzy_fast_login"></div>	
+				</div>
+				<!--手机号动态登录-->
+				<div class="login-con" id="lc">
+					<form action="{:url('/index/user/dophoneLogin')}" method='post' id="ph">
+					<ul> 
+						<li id="inner-num">
+							<i></i>
+							<span>请输入手机号码</span>
+						</li>
+						<li id="inner-virity">
+							<i></i>
+							<span>请输入验证码</span>
+						</li>
+						<li class="lg-num  form-group">
+							
+							<input type="text" name="phone-num" id='mobile' class="form-control" placeholder="请输入手机号码"/>
+							
+							<button id="code" style="width: 100px; ">点击获取验证码</button>
+ 
+							<span class="fa fa-check success" style="display:none;color:green;position:relative;left:-25px;top:5px;"></span>
+						</li>
+						<li class="password form-group">
+							<input type="text" name="password" id="pass" class="form-control" placeholder="请输入验证码"/>
+							
+						</li>
+						
+						<li>
+							<button class="submit" type="submit" id="login-btn1" style="border-radius:5px;">登录</button>
+						</li>
+						<li>
+							<a href="#"><font color="#ff6600">忘记密码？</font></a>
+							<a href="{:url('index/user/register')}" class="zhuce"><font color="#ff6600">新用户注册</font></a>
+						</li>
+						<li class="zjdl">
+							其他方式登录
+						</li>
+						
+					</ul>
+				</form>
+					<!-- <div id="hzy_fast_login"></div> -->
+				</div>
+				<div class="saoma" id="sm">
+					<div class="screen-tu" id="screen"></div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="footer-wrap">
+			<div class="footer-wrap-top">
+				<div class="footer-wrap-top-left">
+					<dl>
+						<dt>新手帮助</dt>
+						<dd>
+							<a href=""> 如何购买</a>
+						</dd>
+						<dd>
+							<a href="">支付教程</a>
+						</dd>
+						<dd>
+						<a href="">优惠券使用</a>
+						</dd>
+						<dd>
+						<a href="">常见问题</a>
+						</dd>
+					</dl>
+					<dl class="bz">
+						<dt>权益保障</dt>
+						<dd>
+						<a href="">全国包邮</a>
+						</dd>
+						<dd>
+						<a href="">7天无理由退货</a>
+						</dd>
+						<dd>
+						<a href="">退货运费补贴</a>
+						</dd>
+						<dd>
+						<a href="">72小时发货</a>
+						</dd>
+					</dl>
+					<dl>
+						<dt> 商家服务</dt>
+						<dd>
+						<a href="">免费开店</a>
+						</dd>
+						<dd>
+						<a href=""> 商家社区</a>
+						</dd>
+						<dd>
+						<a href="">商家入驻</a>
+						</dd>
+						<dd>
+						<a href="">管理后台</a>
+						</dd>
+					</dl>
+				</div>
+				
+			</div>
+			<div class="footer-bottom">
+				©Copyright 中国梦想游			
+			</div>
+		</div>
+	</div>
+	<script src="/static/index/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta charset="utf-8" />
+<meta property="qc:admins" content="1656703477630501171006375" />
+<title>机票查询</title>
+<meta name="keywords" content=""/>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<link rel="shortcut icon" href="http://www.chepiao100.com/application/views/statics/images/favicon.ico?201501210011" type="image/x-icon" />
+<link type="text/css" href="/static/index/bus/css/style.css"  rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="/static/index/bus/css/style_1.css" />
+<link type="text/css" rel="stylesheet" href="/static/index/bus/css/style_2.css" />
+<link type="text/css" rel="stylesheet" href="/static/index/bus/css/jquery.autocomplete.css" />
+
+<script>var BaseURL = 'http://www.chepiao100.com/';</script>
+<script type="text/javascript" src="/static/index/bus/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/jquery.datapick.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/jquery.hotcity.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/jquery.hotcode.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/jquery.tablesort.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/common.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/scrolltotop.js"></script>
+</head>
+<body><script type="text/javascript" src="/static/index/bus/js/location.js"></script>
+<link type="text/css" href="/static/index/bus/css/aircorp.css"  rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="/static/index/bus/css/style_3.css" />
+<!-- head -->
+<div class="header">
+	<div class="header-in wrap">
+		<div class="logo-wp">
+	        <span class="bg logo"></span>		
+		</div>
+		<div class="bg head-new"></div>
+		<div class="head-hd" style="font-size: 20px; margin-bottom: 5px;"><a href="{:url('index/index')}"> 返回首页</a></div>
+		<div class="head-nav" id="head-nav">
+		    <ul>
+		      <li><a href="{:url('index/group/index')}">火车票查询</a></li>
+			  <li><a href="{:url('index/group/qichepiao')}">汽车票查询</a></li>
+			  <li><a href="{:url('index/group/jipiao')}" class="hon3">机票查询</a></li>
+			  
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- head -->
+
+<div class="main-in wrap">
+<!-- start column -->
+<div class="column">
+	<ul>
+	    <li ><em class="bg qc"></em><a href="{:url('index/group/index')}">汽车票查询</a></li>
+		<li class="hon"><em class="bg hb"></em><a href="{:url('index/group/jipiao')}">机票查询</a></li>
+		
+	</ul>
+</div>
+<!-- end column --> 
+
+
+<!-- start cont-form -->
+<div class="cont-form">
+    <div class="bg change"></div>
+	<div class="bg qrcode"></div>
+    <div class="loading"></div>
+	<div class="form_wp">
+		<form action="{:url('index/group/jipiao')}" method="get" id="sub_form" name="sub_form">
+			<div class="form_ipt">
+				 <label>　出发站：</label> 
+				 <input type="text" id="departureAirport" name="departureAirport" value=""  class="plane"/>
+				 <em class="bg hotip" id="departureAirport_icon" src="departureAirport"></em>
+			</div>
+			<div class="form_ipt">
+				 <label>　到达站：</label> 
+				 <input type="text" id="arrivalAirport" name="arrivalAirport" value="" class="plane"/>
+				 <em class="bg hotip" id="arrivalAirport_icon" src="arrivalAirport"></em>
+			</div>
+			<div class="form_ipt">
+				 <label>出发日期：</label> 
+				 <input type="text" id="date" name="date" value="" />
+				 <em class="wktip" id="date_tip" src="date:date_tip:date_icon"></em>
+				 <em class="bg detip" id="date_icon" src="date"></em>
+			</div>
+			<div class="form_btn">
+				<input type="submit" class="sub" value=" 查询 " ;">　
+				<input type="button"  class="res" value=" 重置 " onClick="doRest();">
+			</div>
+		</form>
+	</div>
+</div>
+<!-- end cont-form -->
+</div>
+
+<div class="container wrap">
+
+	<!-- start date -->
+	<div class="cont-date">
+		<ul class="bg">
+		  
+		</ul>
+	</div>
+	<!-- end date -->
+
+    <!-- content query -->
+	
+	<div id="tableSort" class="tableSort">
+   
+	<div class="conbar" box="conbar">
+	    <ul>
+		   <li class="clean">清空选项</li>
+		   <li class="more more2">更多筛选条件</li>
+		</ul>
+	</div>
+	
+	<div class="info">
+	    <!-- <h1>北京 → 厦门</h1> -->
+		<h1><span class="note">航班时刻表</span></h1>
+		<!-- <span class="total">共28个航班</span> -->
+	</div>
+	
+	<div class="select" box="select">
+		<ul>
+			<li>
+			   <label class="name">起飞时段:</label>
+			   <label name="startTime" class="all">全部</label>
+			   <label><input type="checkbox" name="startTime" value=">=06:00&&<=12:00"/>上午(06:00-12:00)</label>
+			   <label><input type="checkbox" name="startTime" value=">=12:00&&<=18:00"/>下午(12:00-18:00)</label>
+			   <label><input type="checkbox" name="startTime" value=">=18:00&&<=24:00"/>晚上(18:00-24:00)</label>
+		   </li>
+		   <li>
+			   <label class="name">　　机型:</label>
+			   <label name="startType" class="all">全部</label>
+			   <label><input type="checkbox" name="startType" value="==大"/>大机型</label>
+			   <label><input type="checkbox" name="startType" value="==中"/>中机型</label>
+		   </li>
+		   		   <li class="hide">
+			   <label class="name">出发机场:</label>
+			   <label name="startStation" class="all">全部</label>
+			   			   <label><input type="checkbox" name="startStation" value="==首都国际机场T2"/>首都国际机场T2</label>
+			   			   <label><input type="checkbox" name="startStation" value="==南苑机场"/>南苑机场</label>
+			   		   </li>
+		   		   		   		   <li class="hide">
+			   <label class="name">航空公司:</label>
+			   <label name="trainGrade" class="all">全部</label>
+			   			   <label><input type="checkbox" name="trainGrade" value="==厦门航空"/>厦门航空</label>
+			   			   <label><input type="checkbox" name="trainGrade" value="==中国国航"/>中国国航</label>
+			   			   <label><input type="checkbox" name="trainGrade" value="==海南航空"/>海南航空</label>
+			   			   <label><input type="checkbox" name="trainGrade" value="==山东航空"/>山东航空</label>
+			   			   <label><input type="checkbox" name="trainGrade" value="==中国联航"/>中国联航</label>
+			   			   <label><input type="checkbox" name="trainGrade" value="==东方航空"/>东方航空</label>
+			   		   </li>
+		   	   </ul>  
+	</div>
+
+    <div class="head" box="head">
+		 <ul>
+		    <li><div class="pl_logo"></div></li>
+			<li><div class="pl_info"><span sort="trainGrade">航班信息</span></div></li>
+			<li><div class="pl_time"><span sort="startTime">起飞/降落</span></div></li>
+			<li><div class="pl_port">起降机场</div></li>
+			<li><div class="pl_take">飞行时间</div></li>
+			<li><div class="pl_rat">价格/准点率</div></li>
+         </ul>
+    </div>
+	
+		<div class="items" box="items">
+	    <ul>
+	    	{if !empty($data)}
+			{foreach $data as $value}
+        	<li box="item">
+			    <div class="list pl_logo">
+				   <div><i class=""><img src="/static/index/bus/images/00.gif"></i></div>
+				</div>
+				
+				<div class="list pl_info">
+					<div><span sort="trainGrade">{$value['carrierCom']}</span> <b class="plan">{$value['flightCode']}</b></div>
+					<b>{$value['planeType']}(<span sort="startType">{$value['planeSize']}</span>)</b>
+				</div>
+				
+				<div class="list pl_time">
+					<div class="start" sort="startTime">{$value['departureTime']}</div>
+					<div class="arrive">{$value['arrivalTime']}</div>
+				</div>
+				
+				<div class="list pl_port">
+					<div sort="startStation">{$value['departureAirport']}</div>
+					<div sort="arriveStation">{$value['arrivalAirport']}</div>
+				</div>
+			
+				<div class="list pl_take">
+				    <div>{$value['costTime']}</div>
+				</div>
+				
+				<div class="list pl_rat">
+				    <div>{$value['planeMemo']}</div>
+				    <div>{$value['correctness']}</div>
+				</div>
+			</li>
+			{/foreach}
+			{/if}
+	
+		
+		
+			
+			  </ul>
+	</div>
+		<div class="tip">因航班时刻经常变化，航班时刻表数据仅供参考</div>
+		</div>
+
+</div>
+<!-- end  container -->
+
+<!-- start footer -->
+
+<!-- end footer -->
+</body>
+</html>

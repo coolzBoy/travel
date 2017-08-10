@@ -1,0 +1,70 @@
+
+
+<!--确认订单-->
+<div id="confirm_order" style="display:none;">
+	<div class="cw1000">
+	<div class="addr_list">
+		<h3>确认收货地址(使用默认地址)</h3>
+			<br/>
+			<div id="address" style="border:1px solid #DDDDDD">
+			<font color="red">填写收货地址：</font><br>
+				收货人：&nbsp;&nbsp;<input  type="text" id="person"><br><br>
+				联系电话：<input type="text" id="tel"><br><br>
+				收货地址：<textarea id="places"></textarea><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" id="subm" value="确定">&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">*修改或重新填写地址，请点确定！*</font>
+			</div>
+		
+	</div>
+	<div class="list_box">
+		<h2>商品清单</h2>
+		<table id="gd">
+			<tr>
+				<th>商品信息</th>
+				<th>单价</th>
+				<th>数量</th>
+				<th>小计</th>
+				<th>运费</th>
+				<th>所得积分</th>
+
+			</tr>
+			
+		</table>
+		<br>
+		<table style="width: 400px;">
+			<tr>
+				<td>购物车商品合计：</td>
+				<td><font color="red">￥ <span id="a1">998</span></font></td>
+			</tr>
+			<tr>
+				<td>总运费：</td>
+				<td><font color="red">+ <span id="a2">20</span></font></td>
+			</tr>
+			<tr>
+				<td>获得积分：</td>
+				<td><font color="red"><span id="a3">98</span></font></td>
+			</tr>
+			<tr>
+				<td>使用该积分可抵现金：</td>
+				<td><font color="red">- <span id="a4">99</span></font></td>
+			</tr>
+		</table>
+		<input type="hidden" id="goodsid" value="1">
+	
+	</div>
+	<!-- <div class="pay_method">
+		<h2>支付方式</h2>
+		<ul>
+			<li><a class="cur" href="#">支付宝支付</a><span>← 选择支付宝支付商品金额</span></li>
+			<li><a href="#">微信支付</a><span>← 选择微信钱包支付商品金额</span></li>
+		</ul>
+	</div> -->
+	<div class="calculation">
+	
+		<input type="submit" href="javascript:void(0)" id="submit" value="提交订单" />
+		<span>应付总额（含运费）： <b>￥<span id="a5">200.0</span></b></span>
+		
+	</div>
+	</div>
+</div>
+
+	

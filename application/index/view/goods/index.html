@@ -1,0 +1,153 @@
+<!DOCTYPE >
+<html >
+<head> 
+    <title>商城列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--jquery库-->
+  	<script type="text/javascript" src="/static/index/js/jquery-1.8.3.min.js"></script>
+    <!--Amazeui-->
+    <script type="text/javascript" src="/static/index/js/amazeui.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/index/css/amazeui.css">
+    <!--核心样式-->
+    <link rel="stylesheet" type="text/css" href="/static/index/css/style.css">
+
+</head> 
+<body>
+<!-- 加载公用的头部文件 -->
+{include file="../application/index/view/top.html" /}
+
+<!-- 导航-->
+            <div class="nav">
+                <ul>
+                    <li><a  href="{:url('index/index/index')}">首页</a></li>
+                    <li><a  href="{:url('index/scenery/index')}">旅游景点</a></li>
+                    <li><a  class="cur" href="{:url('index/goods/index')}">地方特产</a></li>
+                    <li><a  href="{:url('index/group/index')}">车票查询</a></li>
+                    <li><a  href="{:url('index/strategy/index')}">旅游攻略</a></li>
+                    <li><a  href="{:url('index/travel/index')}">行程导航</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--子页框架-->
+<div id="sub_from">
+    <div class="cw1200">
+		<div class="w810 fl">
+			<!--公共盒子-->
+			<div class="public_box bg1">
+				<div class="public_title">
+					<div class="fl"><img src="/static/index/images/from_title_left.png"/></div>
+					<div class="con">
+						<div class="lamp_ico"><img src="/static/index/images/lamp_ico.png"/></div>
+						<div class="name"><img src="/static/index/images/f_t_news_list.png"/></div>
+					</div>
+					<div class="fr"><img src="/static/index/images/from_title_right.png"/></div>
+					<div class="clear"></div>
+				</div>
+				<!--列表分类-->
+				<div id="list_sort">
+					<span>产品类型：</span>
+					<div class="list_1">
+
+						<a class="cur" href="{:url('index/goods/index')}">全部</a>
+						{foreach $data1 as $v}
+						<a href="javascript:void(0)" onclick="show({$v['typeid']});">{$v['name']}</a>
+						
+						{/foreach}
+						<div class="clear"></div>
+					</div>
+                   
+				</div>
+				<!--特产列表-->
+				<div id="mall_list">
+					<ul id="det">
+						
+						<div id="aa" style="display: block;">
+						{foreach $data2 as $v}
+						<li>
+							<div class="pic"><a href="{:url('index/goods/detail',['gid' =>$v['gid']])}"><img class="scale-effect" src="{$v['picture']}"/></a></div>
+							<div class="con">
+								<h3><a href="{:url('index/goods/detail',['gid' =>$v['gid']])}">{$v['name']} &nbsp;&nbsp; {$v['content']} </a></h3>
+								<label>{$v['place']}</label>
+							</div>
+							<div class="price">
+								<p>￥<label>{$v['price']}</label></p>
+								<span>运费：{$v['posts']}</span>
+							</div>
+							<div class="other">
+								<span>{$v['buys']}人已付款</span>
+							</div>
+							<div class="view">
+								<a href="{:url('index/goods/detail',['gid' =>$v['gid']])}">查看详情</a>
+							</div>
+							<div class="clear"></div>
+						</li>
+						{/foreach}
+						</div>
+						
+					</ul>
+				</div>
+				
+			</div>
+	
+		</div>
+		<script type="text/javascript">
+		function show(id){
+			$('#aa').css('display','none');
+			$.get("{:url('index/goods/getGd')}",{id:id},function(data){
+
+				var data = JSON.parse(data,true);
+				$('#det').empty();
+				for(var i in data)
+				{
+					// console.log(data[i]);
+					$('#det').append('<li><div class="pic"><a href="/index/goods/detail?gid='+data[i].gid+'"><img class="scale-effect" src="'+data[i].picture+'"/></a></div><div class="con"><h3><a href="/index/goods/detail?gid='+data[i].gid+'">'+data[i].name+'  '+data[i].content+'</a></h3><label>'+data[i].place+'</label></div><div class="price"><p>￥<label>'+data[i].price+'</label></p><span>运费：'+data[i].posts+'</span></div><div class="other"><span>'+data[i].buys+'人已付款</span></div><div class="view"><a href="/index/goods/detail?gid='+data[i].gid+'">查看详情</a></div><div class="clear"></div></li>');
+				}
+				
+			},'json');
+		}
+
+		</script>
+		<div class="w380 fr">
+			<!--公共盒子-->
+			<div class="public_box bg2">
+				<div class="public_title">
+					<div class="fl"><img src="/static/index/images/from_title_left.png"/></div>
+					<div class="con">
+						<div class="lamp_ico"><img src="/static/index/images/lamp_ico.png"/></div>
+						<div class="name"><img src="/static/index/images/f_t_mobile_platform.png"/></div>
+					</div>
+					<div class="fr"><img src="/static/index/images/from_title_right.png"/></div>
+					<div class="clear"></div>
+				</div>
+				<!--移动平台-->
+				<div id="mobile_platform">
+					<img src="/static/index/images/mp_pic.jpg"/>
+					
+				</div>
+			</div>
+		
+			</div>
+		</div>
+		<div class="clear"></div>
+    </div>
+</div>
+
+<!--版底-->
+<div id="footer">
+    <div class="cw1200">
+        <div class="line"><img src="/static/index/images/b_line.png"/></div>
+        <div class="b_logo"><img src="/static/index/images/b_logo.png"/></div>
+        <div class="con">
+            <p>中国梦想游</p>
+            
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+
+</body>
+</html>

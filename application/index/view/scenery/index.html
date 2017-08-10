@@ -1,0 +1,383 @@
+<!DOCTYPE >
+<html >
+<head> 
+    <title>商城列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--jquery库-->
+    <script type="text/javascript" src="/static/index/js/jquery-1.8.3.min.js"></script>
+    <!--Amazeui-->
+    <script type="text/javascript" src="/static/index/js/amazeui.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/index/css/amazeui.css">
+    <!--核心样式-->
+    <link rel="stylesheet" type="text/css" href="/static/index/css/style.css">
+    
+    <link rel="stylesheet" type="text/css" href="/static/index/demo/pc/css/base.css?1607171726.25"
+    />
+    
+    <!-- bootstrap -->
+    <link rel="icon" href="/static/index/demo/pic/_o/75/6e/2f6871f198c0bd7615ffbf9a2f5f_49_48.c5.png"
+    type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="/static/index/demo/pc/css/page/search/catalog.css?1607171726.25"
+    />
+    <link rel="stylesheet" type="text/css" href="/static/index/demo/pc/css/page/search/filter.css?1607171726.25"
+    />
+    <script type="text/javascript" src="/static/index/demo/pc/jsmin/fml.js?1">
+    </script>
+    <script>
+        fml.setOptions({
+            'sversion': '1607171726.25',
+            'defer': true,
+            'modulebase': 'pc/jsmin/'
+        });
+        var Meilishuo = {
+            "config": {
+                "nt": "1yQyN1tU7ssTVQ5GeZ16wzlv30ry2qIxWwb+91mpkPC4hsL6NGU0ABUAE2gyVhY2",
+                "main_site_domain": "/",
+                "server_url": "/",
+                "picture_url": "http://i.meilishuo.net/css/",
+                "captcha_url": "http://captcha.meilishuo.com/",
+                "im_url": "http://imlab.meilishuo.com/",
+                "forSale": false,
+                "controller": "catalog",
+                "isLogin": true,
+                "userInfo": {
+                    "name": "阿猫来了",
+                    "uid": "11cnkktq",
+                    "avatar": "new1/v1/bdefaultavatar/03.jpg"
+                }
+            }
+        };
+    </script>
+    <style>
+        #fenye li{
+            float:left;
+        }
+        #fenye{
+          margin-left:%;
+        }
+
+
+    </style>
+
+</head> 
+
+<!-- 加载公用的头部文件 -->
+{include file="../application/index/view/top.html" /}
+
+<!-- 导航-->
+            <div class="nav">
+                <ul>
+                    <li><a  href="{:url('index/index/index')}">首页</a></li>
+                    <li><a  class="cur" href="{:url('index/scenery/index')}">旅游景点</a></li>
+                    <li><a  href="{:url('index/goods/index')}">地方特产</a></li>
+                    <li><a  href="{:url('index/group/index')}">车票查询</a></li>
+                    <li><a  href="{:url('index/strategy/index')}">旅游攻略</a></li>
+                    <li><a  href="{:url('index/travel/index')}">行程导航</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--子页框架-->
+
+<!-- 旅游景点 -->
+<!------------------子页框架-------------------->
+
+<div class="userContain" data-link="/search/catalog/10057049">
+
+<div class="choice">
+    
+</div> 
+<!-- 分类 -->
+<div class="styleWrap">
+    <div class="styleInfo">
+        <div class="styleCatalog">
+            <div class="styleContainer">
+                <p class="styleTitle" data-catePropNameId="2048">
+                    分类：
+                </p>
+                <p class="styleNameWrap" data-choice=''>
+                    {foreach $place as $value}
+                    <a href="javascript:void(0);"onclick="selectplace({$value['pid']})"  id="shan"><i class="del_ico"></i>
+                        <span>
+
+                        </span>
+                       {$value['province']}
+                    </a>
+                   {/foreach}
+                </p>
+                <a class="more">
+                    <span class="moreDesc">
+                        更多
+                    </span>
+                    <span class="moreArrow">
+                    </span>
+                </a>
+            </div>
+            <div class="btnWrap">
+                <div class="btnSure btnOn">
+                    提交
+                </div>
+                <div class="btnNo">
+                    取消
+                </div>
+            </div>
+        </div>
+        <!-- <div class="styleCatalog">
+            <div class="styleContainer">
+                <p class="styleTitle" data-catePropNameId="2050">
+                    类型：
+                </p>
+                <p class="styleNameWrap" data-choice=''>
+                    <a onclick="return false;" href='javascript:void(0)' target="_blank" class="styleName"
+                    data-isClick='0' data-catePropId="21517">
+                        <span class="choiceBox">
+                        </span>
+                        历史文化
+                    </a>
+                    
+                </p>
+                <a class="more">
+                    <span class="moreDesc">
+                        更多
+                    </span>
+                    <span class="moreArrow">
+                    </span>
+                </a>
+                <a class="mulChoice">
+                    多选
+                </a>
+            </div>
+            <div class="btnWrap">
+                <div class="btnSure btnOn">
+                    提交
+                </div>
+                <div class="btnNo">
+                    取消
+                </div>
+            </div>
+        </div>
+     -->
+<!-- ----------------排序 ------------------>
+       <div class="orderWrap">
+    <!-- 流行 热销 上新 价格 -->
+    
+
+    <!-- 价格部分 -->
+    
+    <!-- ------------遍历--------------- -->
+</div>
+<div class="product" id="product-page">
+    <ul class="clearfix product-ul" id="product-ul">
+        {foreach $data1 as $value}
+        <li class="product-list fl" id="product-list">               
+        <div class="img-size">                 
+        <a class="img-link" target="_blank" href="{:url('index/scenery/scenic',['sid'=>$value['sid']])}" style="background:url(/uploads/{$value['picture']}") no-repeat center center;background-size:cover;">
+        </a>                                    
+        </div>              
+        <div class="product-info clearfix">   
+
+        <div class="price fl"><em class="price-u">¥</em><span class="price-n">{$value['price']}</span></div>   <div class="fav fr"><em class="fav-i"></em> <span class="fav-n"></span>                                 
+        </div>              </div>     
+        <div></div>                                 
+        <div class="product-logo">                  
+                   
+        </div>                          
+        <a class="text-link" target="_blank" href="{:url('index/scenery/scenic',['sid'=>$value['sid']])}"> {$value['name']}</a>              
+        </li>
+      {/foreach}
+     
+      <!-- -----------1-------- --> 
+    </ul>
+</div>
+<!-- 分页 -->
+
+<div class="pageNav"id='fenye'>
+{$page}
+<!-- <a class="pagePrev " style="display:none !important" href=""> </a> -->
+
+</div>
+
+<!-- ------------分页----------- -->
+
+ 
+
+<!-----------------版底---------------->
+
+   </div>
+    <script>
+        fml.vars.ppath = JSON.stringify();
+    </script>
+    <div id="com-foot">
+        <div class="inner">
+            <div class="flist">
+                <h4>
+                    买家帮助
+                </h4>
+                <div>
+                    <a href="noviceGuide.html" target="_blank">
+                        新手指南
+                    </a>
+                </div>
+                <div>
+                    <a href="serviceEnsure.html" target="_blank">
+                        服务保障
+                    </a>
+                </div>
+                <div>
+                    <a href="helpCommon.html" target="_blank">
+                        常见问题
+                    </a>
+                </div>
+                <div>
+                    <a href="shoppingHelp.html" target="_blank">
+                        购物帮助
+                    </a>
+                </div>
+            </div>
+            <div class="flist">
+                <h4>
+                    商家帮助
+                </h4>
+                <div>
+                    <a href="#/business" target="_blank">
+                        商家入驻
+                    </a>
+                </div>
+                <div>
+                    <a href="#" target="_blank">
+                        商家后台
+                    </a>
+                </div>
+                <div>
+                    <a href="#" target="_blank">
+                        商家推广
+                    </a>
+                </div>
+            </div>
+            <div class="flist">
+                <h4>
+                    关于我们
+                </h4>
+                <div>
+                    <a href="aboutus.html" target="_blank">
+                        关于说
+                    </a>
+                </div>
+                <div>
+                    <a href="contactus.html" target="_blank">
+                        联系我们
+                    </a>
+                </div>
+            </div>
+            <div class="flist aboutus">
+                <h4>
+                    关注我们
+                </h4>
+                <div>
+                    <a href="#" target="_blank">
+                        <span class="i-sina">
+                        </span>
+                        新浪微博
+                        <div class="follow">
+                            一键关注新浪微博
+                            <wb:follow-button uid="1718455577" type="red_1" width="67" height="24">
+                            </wb:follow-button>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="#" target="_blank">
+                        <span class="i-qzone">
+                        </span>
+                        QQ空间
+                    </a>
+                </div>
+                <div>
+                    <a href="#" target="_blank">
+                        <span class="i-tencent">
+                        </span>
+                        腾讯微博
+                    </a>
+                </div>
+            </div>
+            <div class="flist service">
+                <h4>
+                    微信服务号
+                </h4>
+              
+            </div>
+            <div class="flist last" style="float:left;">
+                <h4>
+                    客户端下载
+                </h4>
+                <p style="background:none; margin-top:0px;" class="client">
+                   
+                </p>
+            </div>
+            <div class="record">
+                Copyright ©2016 Meilishuo.com &nbsp;
+                
+                    电信与信息服务业务经营许可证100798号
+                </a>
+                &nbsp;
+               
+                    经营性网站备案信息
+                </a>
+                &nbsp;
+                <br />
+                京ICP备11031139号&nbsp; 京公网安备110108006045&nbsp;&nbsp; 客服电话：4000-800-577&nbsp;
+                文明办网文明上网举报电话：010-82615762 &nbsp;
+                
+                    违法不良信息举报中心
+                </a>
+            </div>
+        </div>
+    </div>
+    <p style="display: none" class="biu-login">
+        11cnkktq
+    </p>
+
+    <script type="text/javascript" src="/static/index/demo/pc/jsmin/jquery.js?1.12.4">
+    </script>
+    <script type="text/javascript" src="/static/index/demo/__static/logger/0.1.8/logger.js">
+    </script>
+    <script src="/static/index/demo/__newtown/im_web/assets/common/openim/index.js">
+    </script>
+    <script src="/static/index/demo/pc/~page/search/catalog+base?1607171726.25">
+    </script>
+    <script>
+        fml.use('page/search/catalog');;
+        fml.use('base');;
+        //fml.iLoad();
+    </script>
+
+    <script>
+        function selectplace(id){
+             $.get('/index/scenery/getsceneryinfo',{id:id},function(data){
+               
+               var obj = JSON.parse(data);
+               console.log(obj);
+            // var ul = $('#product-ul');
+            // ul.empty();
+             $('#product-ul').empty();
+
+            for (var i = 0; i < obj.length; i++) {
+                // $('<div>'+obj[i]['name']+'</div>').appendTo(ul);
+                // 遍历
+                
+                $("<ul class='clearfix product-ul' id='product-ul'><li class='product-list fl' id='product-list'><div class='img-size'><a class='img-link' target='_blank' href='{:url('index/scenery/scenic')}?sid="+obj[i]['sid']+"' style='background:url(/uploads/"+obj[i]['picture']+") no-repeat center center;background-size:cover;'></a></div><div class='product-info clearfix'><div class='price fl'><em class='price-u'>¥</em><span class='price-n'>"+obj[i]['price']+"</span></div><div class='fav fr'><em class='fav-i'></em><span class='fav-n'>1231</span></div></div><div></div><div class='product-logo'>"+obj[i]['name']+"</div><a href='{:url('index/scenery/scenic')}?sid="+obj[i]['sid']+"'class='text-link' target='_blank' >"+obj[i]['name']+"</a></li></ul>").appendTo($('#product-ul'));
+             
+            }
+            
+            },'json');
+
+    }    
+  
+// 筛选景点信息
+</script>
+</body>
+
+</html>
+

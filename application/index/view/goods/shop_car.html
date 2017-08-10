@@ -1,0 +1,370 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>购物车</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--jquery库-->
+    <script type="text/javascript" src="/static/index/js/jquery-1.8.3.min.js"></script>
+    
+    <script type="text/javascript" src="/static/index/js/amazeui.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/index/css/amazeui.css">
+    <!-- 核心样式 -->
+    <link rel="stylesheet" type="text/css" href="/static/index/css/user.css">    
+</head>
+<body>
+<!--版头-->
+<div id="header">
+    <div class="cw1000">
+        <!--logo-->
+        <div class="logo"><a title="" href="{:url('index/index/index')}"><img alt="" src="/static/index/images/goods/logo1.jpg" /></a></div>
+        <!--头部导航-->
+        <div class="head_title">
+            <a href="{:url('index/goods/shop_car',['flag' =>1])}">购物车</a>  
+        </div>
+        <!--用户-->
+        <div class="clear"></div>
+    </div>
+</div>
+<!--框架-->
+<div class="car" style="margin-left: 130px;margin-top: 20px;"><img id="cars" src="/static/index/images/goods/shop_car1.png"></div>  
+<div id="shop_car">
+    {if (empty($data) && $flag )}
+    <div class="car">
+        <img src="/static/index/images/goods/empty_car.png">
+    </div>
+    <div class="calculation">
+        <label class="am-checkbox" style="float:left;padding-left:30px;margin-top:15px;"> </label>
+        <span><a href="{:url('index/goods/index')}" style="background: red;">去购物</a></span>
+        <span><b id="sums"></b></span>
+    </div>
+    {else}
+    <div id="shopcar" style="display:block;">
+    <div class="cw1000">
+        <div class="main_title">
+            <ul>
+                <li style="width:35%;">
+                    商品信息
+                </li>
+                <li style="width:10%;">单价</li>
+                <li style="width:20%;">数量</li>
+                <li style="width:10%;">小计</li>
+                <li style="width:10%;">可得积分</li>
+                <li style="width:15%;">操作</li>
+            </ul>
+        </div>
+        <div class="list_box">
+            <ul>
+            {if ($flag)}
+                {foreach $data as $v}
+                <li class="shopli">
+                    <div class="con"> 
+                        <input type="hidden" class="flag" value="1">
+                        <input type="hidden" class="gid" value="{$v['gid']}">
+                        <div class="info" style="width:35%;">
+                            <!-- <label class="am-checkbox" style="float:left;margin-right:15px;">
+                                <input type="checkbox" id="cb1" class="cb1" style="border:1px solid #ffa800;width:20px;height:20px;top:5px;border-radius:5px;" > 
+                            </label> -->
+                            <div class="pic"><a href="{:url('index/goods/detail',['gid' =>$v['gid']])}"><img width=53 height=53 src="{$v['picture']}" /></a></div>
+                            <div class="name" style="margin-left: 5px;">
+                                <a href="{:url('index/goods/detail',['gid' =>$v['gid']])}">{$v['info']}</a>
+                                <p>下单日期：{$v['time']}</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="price" style="width:10%;"><label class="pr">￥{$v['price']}</label></div>
+                        <div class="number" style="width:20%;">
+                            <div class="Spinner">
+                                <input type="hidden" class="stock" value="{$v['stock']}">
+                                <a class="DisDe" href="javascript:void(0)" ><i>-</i></a>
+                                <input class="Amount" value="{$v['num']}" autocomplete="off" maxlength="3">
+                                <a class="Increase" href="javascript:void(0)"><i>+</i></a>
+                            </div>
+                        </div>
+                        <div class="price" style="width:10%;"><span class="sum"></span></div>
+                        <div class="price" style="width:10%;"><span class="score">1</span></div>
+                        <div class="operation" style="width:15%;">
+                            <a class="evaluation" href="javascript:void(0)" onclick="del({$v['id']});">删除</a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </li>
+                {/foreach}
+            {else}
+                <li>
+                    <div class="con">
+                        <input type="hidden" class="flag" value="2">
+                        <input type="hidden" class="gid" value="{$data['gid']}">
+                        <div class="info" style="width:35%;">
+                            
+                            <div class="pic"><a href="{:url('index/goods/detail',['gid' =>$data['gid']])}"><img width=53 height=53 src="{$data['picture']}" /></a></div>
+                            <div class="name" style="margin-left: 5px;">
+                                <a href="{:url('index/goods/detail',['gid' =>$data['gid']])}">{$data['name']}</a>
+                                <p>下单日期：<span id="tt">{$data['time']}</span></p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="price" style="width:10%;"><label id="price">￥{$data['price']}</label></div>
+                        <div class="number" style="width:20%;">
+                            <div class="Spinner">
+                                <input type="hidden" id="stock" value="{$data['stock']}">
+                                <a class="DisDe" href="javascript:void(0)" onClick="sub();"><i>-</i></a>
+                                <input class="Amount" id="num" value="{$data['num']}" autocomplete="off" maxlength="3">
+                                <a class="Increase" href="javascript:void(0)" onClick="add();"><i>+</i></a>
+                            </div>
+                        </div>
+                        <div class="price" style="width:10%;"><span id="sum"></span></div>
+                        <div class="price" style="width:10%;"><span id="score"></span></div>
+                         <div class="operation" style="width:15%;">---</div>
+                        <div class="clear"></div>
+                    </div>
+                </li>
+            {/if}
+            </ul>
+        </div>
+        <div class="calculation">
+            <!-- {if ($flag)}
+            <label class="am-checkbox" style="float:left;padding-left:30px;margin-top:15px;">
+                <input type="checkbox" id="checkbox_a0" class="chk_1"> 
+                <label style="margin-right:10px;" for="checkbox_a0"></label> 全选
+            </label>
+            {/if} -->
+            <a href="javascript:void(0)" id="suan" style="background: red;"><div >立即结算>></div></a>
+            <span><a href="{:url('index/goods/index')}" style="background: gray;"><<继续购物</a></span>
+            <span>合计（不含运费）： <b id="sums"></b></span>
+        </div>
+        
+    </div>
+     </div>
+    {include file="../application/index/view/goods/confirm_order.html"}
+    {include file="../application/index/view/goods/order.html"}
+    <div class="clear"></div>
+    {/if}
+</div>
+<script type="text/javascript" src="/static/index/js/shop_car.js"></script>
+<script type="text/javascript">
+    //删除
+    function del(id){
+    $.get("{:url('/index/goods/del_goods')}",{id:id},function(data){
+        if(data){
+            window.location.reload();
+        }
+    },'json');
+}
+    $('#suan').click(function(){
+        numArr = [];
+        //总价
+        sums = 0;
+        //总运费
+        posts = 0;
+        //总积分
+        scores = 0;
+        //直接在购物车买处理事件
+        if($('.flag').prop('value') =='1'){
+            for( var i in $('.gid')){
+                var a = $('.gid')[i].value;
+                numArr[a] = $('.Amount')[i].value;
+            }
+            $.get("{:url('index/goods/shopInfo')}",{arr:numArr,flag:1},function(data){
+                
+            },'json');
+
+            $.get("{:url('index/goods/shopcars')}",function(data){
+                    var dt = JSON.parse(data);
+                    for(var i in dt){
+                        var sum = dt[i].price*dt[i].num;
+                        var score = parseInt(sum *0.5); 
+                        $('#gd').append('<tr><td><div class="pic"><img width=53 height=53 src=" '+ dt[i].picture+' " /></div><div class="name">'+ dt[i].info+'<p>下单日期：'+ dt[i].time + '</p></div><div class="clear"></div></td><td style="text-align:center;">￥' +dt[i].price+'</td><td style="text-align:center;">x '+ dt[i].num+'</td><td style="text-align:center;"><font color="red">￥'+sum+'</font></td><td style="text-align:center;"><font color="red">￥'+dt[i].posts+'</font></td><td style="text-align:center;"><font color="red">'+score+'</font></td></tr>');
+                        sums +=sum;
+                        posts +=dt[i].posts;
+                        scores +=score;
+                    }
+                    var pay = parseInt(scores*0.1);
+                    var pays = sums+posts-pay;
+                    $('#a1').html(sums);
+                    $('#a2').html(posts);
+                    $('#a3').html(scores);
+                    $('#a4').html(pay);
+                    $('#a5').html(pays);
+                    
+                },'json');
+
+            $('#cars').prop('src','/static/index/images/goods/shop_car2.png');
+            $('#shopcar').css('display','none');
+            $('#confirm_order').css('display','block');
+
+            $.get("{:url('index/goods/consigneeInfo')}",function(data){
+                
+               if(data){
+                    $('#person').prop('value',data.consignee);
+                    $('#tel').prop('value',data.phone);
+                    $('#places').prop('value',data.address);
+               }else{
+                    
+               }
+                
+            },'json');
+            
+            $('#subm').click(function(){
+                var p1 = $('#person').prop('value');
+                var p2 = $('#tel').prop('value');
+                var p3 = $('#places').prop('value');
+                $.get("{:url('index/goods/addPerson')}",{p1:p1,p2:p2,p3:p3},function(data){
+                    
+                },'json');
+
+            });
+             //提交订单
+            $('#submit').click(function(){
+                //获取收货人姓名
+                var person = $('#person').prop('value');
+                //获取总价
+                var sum = $('#a5').html();
+                //获取总运费
+                var posts = $('#a2').html();
+                //可得积分
+                var score = $('#a3').html();
+                //获取积分折扣
+                var discount = $('#a4').html();
+                 $.get("{:url('index/goods/order')}",{person:person,sum:sum,posts:posts,score:score,discount:discount,flag:1},function(data){
+                    
+                },'json');
+                 $.get("{:url('index/goods/getOrder')}",function(data){
+                    var dt = JSON.parse(data);
+                    // console.log(dt);
+                    $('#d1').html(dt.oid);
+                    $('#d2').html(dt.sum);
+                    $('#d3').html(dt.consignee);
+                    $('#d4').html(dt.time);
+                 },'json');
+
+                $('#cars').prop('src','/static/index/images/goods/shop_car3.png');
+                $('#shopcar').css('display','none');
+                $('#confirm_order').css('display','none');
+                $('#order').css('display','block');
+            });
+
+            $('#py').click(function(){
+                var code = $('#d1').html();
+                $.get("{:url('index/goods/deal')}",{flag:1,code:code},function(data){
+                    // console.log(data);
+                    if(data){
+                        alert('支付成功！');
+                    }else{
+                        alert('支付失败！')
+                    }
+                },'json');
+
+            });
+        }
+        //立即购买事件处理
+        if($('.flag').prop('value') =='2'){
+            // console.log($('.gid').prop('value'));
+            var id = $('.gid').prop('value');
+            var num = $('.Amount').prop('value');
+            $.get("{:url('index/goods/shopInfo')}",{gid:id,flag:2},function(data){
+                
+                var sum = data.price *num;
+                var score = sum *0.5;
+                var time = $('#tt').html();
+                $('#gd').append('<tr><td><div class="pic"><img width=53 height=53 src=" '+ data.picture+' " /></div><div class="name">'+ data.name+'<p>下单日期：'+time + '</p></div><div class="clear"></div></td><td style="text-align:center;">￥' +data.price+'</td><td style="text-align:center;">x <span id="n">'+ num+'</span></td><td style="text-align:center;"><font color="red">￥'+sum+'</font></td><td style="text-align:center;"><font color="red">￥'+data.posts+'</font></td><td style="text-align:center;"><font color="red">'+score+'</font></td></tr>');
+
+                    var pay = parseInt(score*0.1);
+                    var pays = sum+data.posts-pay;
+                    $('#a1').html(sum);
+                    $('#a2').html(data.posts);
+                    $('#a3').html(score);
+                    $('#a4').html(pay);
+                    $('#a5').html(pays);
+                $('#goodsid').prop('value',data.gid);
+
+            },'json');
+
+            $('#cars').prop('src','/static/index/images/goods/shop_car2.png');
+            $('#shopcar').css('display','none');
+            $('#confirm_order').css('display','block');
+
+            $.get("{:url('index/goods/consigneeInfo')}",function(data){
+                
+               if(data){
+                    $('#person').prop('value',data.consignee);
+                    $('#tel').prop('value',data.phone);
+                    $('#places').prop('value',data.address);
+               }else{
+                    
+               }
+                
+            },'json');
+            
+            $('#subm').click(function(){
+                var p1 = $('#person').prop('value');
+                var p2 = $('#tel').prop('value');
+                var p3 = $('#places').prop('value');
+                $.get("{:url('index/goods/addPerson')}",{p1:p1,p2:p2,p3:p3},function(data){
+                    
+                },'json');
+
+            });
+
+            //提交订单
+            $('#submit').click(function(){
+                //获取收货人姓名
+                var person = $('#person').prop('value');
+                //获取总价
+                var sum = $('#a5').html();
+                //商品ID
+                var id  = $('#goodsid').prop('value');
+                //商品数量
+                var num = $('#n').html();
+                //获取总运费
+                var posts = $('#a2').html();
+                //可得积分
+                var score = $('#a3').html();
+                //获取积分折扣
+                var discount = $('#a4').html();
+                
+                 $.get("{:url('index/goods/order')}",{person:person,sum:sum,gid:id,n:num,posts:posts,score:score,discount:discount,flag:2},function(data){
+                    
+                },'json');
+                 $.get("{:url('index/goods/getOrder')}",function(data){
+                    var dt = JSON.parse(data);
+                    // console.log(dt);
+                    $('#d1').html(dt.oid);
+                    $('#d2').html(dt.sum);
+                    $('#d3').html(dt.consignee);
+                    $('#d4').html(dt.time);
+                 },'json');
+
+                $('#cars').prop('src','/static/index/images/goods/shop_car3.png');
+                $('#shopcar').css('display','none');
+                $('#confirm_order').css('display','none');
+                $('#order').css('display','block');
+            });
+
+            $('#py').click(function(){
+                var code = $('#d1').html();
+                $.get("{:url('index/goods/deal')}",{flag:2,code:code},function(data){
+                    // console.log(data);
+                    if(data){
+                        alert('支付成功！');
+                    }else{
+                        alert('支付失败！')
+                    }
+                },'json');
+
+            });
+
+        }
+
+       
+       
+    });
+
+
+</script>
+<!--版底-->
+<div id="footer">
+    <p>中国梦想游</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>会员注册</title>
+	<!-- <meta name="viewport" content="width=divice-width,initial-scale=1.0,minimum-scale=1.0,maximum=1.0,user-scalable=no" /> -->
+	<meta http-equiv=X-UA-Compatible content=IE=8/>
+	<link rel="stylesheet" href="/static/index/css/normalize.css" type="text/css" />
+	<link rel="stylesheet" href="/static/index/css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="/static/index/bootstrap/css/bootstrap.css" type="text/css"/>
+	<link rel="stylesheet" href="/static/index/css/register.css" type="text/css" />
+	
+	<script src="/static/index/js/jquery-1.11.3.js"></script>
+	<script src="/static/index/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/static/index/js/angular.min.js"></script>
+	<script src="/static/index/js/register.js"></script>
+ 
+</head>
+<body>
+	<div class="wrap" id="wrap">
+		<div class="logo" id="logo">
+			<a href="{:url('index/index/index')}">
+				<img src="/static/index/images/logo.jpg" title="中国梦想游">
+			</a>
+		</div>
+		<div class="register-wrap" id="register-wrap">
+			<div class="pic" id="pic">
+				<img src="/static/index/images/dl_bg1.jpg" />
+			</div>
+			<div class="register" id="register">
+				<div class="register-top">
+					<h2>欢迎新用户注册</h2>
+
+				</div>
+				<div class="register-con" ng-app ="myApp"  ng-controller="regController">
+				<form action="#"  name="loginForm" ng-submit="submitLoginForm($event)">
+					<ul >
+						<li class="form-group" ng-class="{'has-success':loginForm.username.$valid}">
+							<i>&nbsp;用&nbsp;户&nbsp;名&nbsp;</i>
+							<input type="text" name="username"  class="form-control" ng-class="{'error':loginForm.username.$invalid && loginForm.username.$touched}" ng-model="logindata.username" required placeholder="请输入用户名/昵称" ng-pattern="/^[a-zA-Z]\w{3,}/"/>
+							<!--图标提示-->
+							<span class="fa fa-check result success" ng-if="loginForm.username.$valid"></span>
+
+							<p class="error" ng-if="loginForm.username.$error.required && loginForm.username.$touched">用户名不能为空!</p>
+							<p class="error" ng-if="(loginForm.username.$error.pattern) && loginForm.username.$touched">用户名不能以数字开头，且长度大于3,不能以汉字命名</p>
+						</li>
+
+						<li class="form-group" ng-class="{'has-success':loginForm.password.$valid}">
+							<i>密&nbsp;&nbsp;&nbsp;&nbsp;码</i>
+							<input type="password" name="password" id="pass" class="form-control" ng-class="{'error':loginForm.password.$invalid && loginForm.password.$touched}" ng-model="logindata.password" required placeholder="密码" ng-pattern="/((?=.*[a-z])(?=.*\d)|(?=[a-z])(?=.*[#@!~%^&*])|(?=.*\d)(?=.*[#@!~%^&*]))[a-z\d#@!~%^&*]{6,16}/i"/>
+							<!--图标提示-->
+							<span class="fa fa-check result success" ng-if="loginForm.password.$valid"></span>
+
+							<p class="error" ng-if="loginForm.password.$error.required && loginForm.password.$touched">密码不能为空!</p>
+							<p class="error" ng-if="(loginForm.password.$error.pattern) && loginForm.password.$touched">密码需6-16位字母或数字或特殊字符组合</p>
+						</li>
+
+						<li class="form-group" ng-class="{'has-success':loginForm.password2.$valid}">
+							<i>确认密码</i>
+							<input type="password" name="password2" id="password"
+							class="form-control" ng-model="logindata.password2" compare="logindata.password" required placeholder="再次确认密码">
+							<!--图标提示-->
+							<span class="fa fa-check result success" ng-if="loginForm.password2.$valid"></span>
+
+							<!--文字提示-->
+							<p class="error" ng-if="loginForm.password2.$error.compare && loginForm.password2.$touched">两次输入的密码不一致!</p>
+						</li>
+						<li class="form-group" ng-class="{'has-success':loginForm.phone.$valid}">
+							
+							<input type="text" name="phone" id="mobile" style="width: 230px;" placeholder="请输入你的手机号码" class="form-control" ng-class="{'error':loginForm.phone.$invalid && loginForm.phone.$touched}" ng-model="logindata.phone" ng-pattern=" /^(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/" required>
+							<span class="fa fa-check result success" ng-if="loginForm.phone.$valid"></span>
+							
+							<p class="error" ng-if="loginForm.phone.$error.required&&loginForm.phone.$touched">手机号码不能为空！</p>
+							
+							<p class="error" ng-if="(loginForm.phone.$error.pattern)&& loginForm.phone.$touched">请输入11位真实的手机号码</p>
+						</li>
+
+						<li class="form-group">
+							<button id="code" style="width: 100px;background: #FF6600"  required>点击获取验证码</button>
+
+							<input type="text" name="yanzheng" class="form-control" placeholder="验证码" ng-model="logindata.yzcode">
+							
+						</li>
+						<li class="read form-group">
+							<input type="checkbox" class="ck form-control" name="check" value="1" checked="checked"/>
+							<b>我已阅读并且同意《中国梦想游网站服务使用协议》</b>
+						</li>
+						<li class="form-group">
+							<button class="submit">立即注册</button>
+							
+						</li>
+						<li>
+							<a href="{:url('index/user/login')}" style="text-decoration: none;"><font color="#FF6600">已有账号,去登录 &gt;</font></a>
+						</li>
+					</ul>
+
+				</form>	
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+var InterValObj; //timer变量，控制时间  
+var count = 180; //间隔函数，1秒执行  
+var curCount;//当前剩余秒数  
+var code = ""; //验证码  
+var codeLength = 6;//验证码长度  
+
+$('#code').click(function () {  
+    var phone = $("#mobile").val();  
+    console.log(phone);  
+    $.ajax({  
+        type: "POST",  
+        url: "/index/user/sendSMS",  
+        data: "mobile="+$("#mobile").val() ,  
+        success: function (data) {  
+            console.log(data);  
+                //data.result && data.result.success  
+                if(data){  
+                    curCount = count;  
+                   //设置button效果，开始计时  
+                   $("#code").css("background-color", "LightSkyBlue");  
+                   $("#code").attr("disabled", "true");  
+                   $("#code").html("获取" + curCount + "秒");  
+                   InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次  
+                  // alert("验证码发送成功，请查收!");  
+              }  
+          },  
+          dataType: 'json'  
+      });  
+    return false;  
+});  
+
+function SetRemainTime() {  
+    if (curCount == 0) {  
+        window.clearInterval(InterValObj);//停止计时器  
+        $("#code").removeAttr("disabled");//启用按钮  
+        $("#code").css("background-color", "");  
+        $("#code").html("重发验证码");  
+        code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效  
+    }  
+    else {  
+        curCount--;  
+        $("#code").html("获取" + curCount + "秒");  
+    }  
+}  
+
+</script>
+	<div class="footer">
+		<div class="footer-wrap">
+			<div class="footer-wrap-top">
+				<div class="footer-wrap-top-left">
+					<dl>
+						<dt>新手帮助</dt>
+						<dd><a href=""> 如何购买</a></dd>
+						<dd><a href="">支付教程</a></dd>
+						<dd><a href="">优惠券使用</a></dd>
+						<dd><a href="">常见问题</a></dd>
+					</dl>
+					<dl class="bz">
+						<dt>权益保障</dt>
+						<dd><a href="">全国包邮</a></dd>
+						<dd><a href="">7天无理由退货</a></dd>
+						<dd><a href="">退货运费补贴</a></dd>
+						<dd><a href="">72小时发货</a></dd>
+					</dl>
+					<dl>
+						<dt> 商家服务</dt>
+						<dd><a href="">免费开店</a></dd>
+						<dd><a href=""> 商家社区</a></dd>
+						<dd><a href="">商家入驻</a></dd>
+						<dd><a href="">管理后台</a></dd>
+					</dl>
+				</div>
+				
+			</div>
+			<div class="footer-bottom">
+				©Copyright 中国梦想游			
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

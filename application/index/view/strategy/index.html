@@ -1,0 +1,104 @@
+<!DOCTYPE >
+<html >
+<head> 
+    <title>商城列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--jquery库-->
+  	<script type="text/javascript" src="/static/index/js/jquery-1.8.3.min.js"></script>
+    <!--Amazeui-->
+    <script type="text/javascript" src="/static/index/js/amazeui.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/index/css/amazeui.css">
+    <!--核心样式-->
+    <link rel="stylesheet" type="text/css" href="/static/index/css/style.css">
+    
+
+  <!-- bootstrap 样式-->
+    <style type="text/css">
+            /*#page1 li{float:left;}*/
+           #page1{text-align:center;margin-top:15px;margin-bottom: 3px;}  
+           #page1 li{margin:0px 5px; border:1px solid #e6e6e6;display: inline-block;}
+            #page1 active{background-color:grey;color:red;}  
+            #page1 disabled{color:#aaa;} 
+    </style>
+</head> 
+<body> 
+<!-- 加载公用的头部文件 -->
+{include file="../application/index/view/top.html" /}
+
+<!-- 导航-->
+            <div class="nav">
+                <ul>
+                    <li><a  href="{:url('index/index/index')}">首页</a></li>
+                    <li><a  href="{:url('index/scenery/index')}">旅游景点</a></li>
+                    <li><a  href="{:url('index/goods/index')}">地方特产</a></li>
+                    <li><a  href="{:url('index/group/index')}">车票查询</a></li>
+                    <li><a  class="cur" href="{:url('index/strategy/index')}">旅游攻略</a></li>
+                    <li><a  href="{:url('index/travel/index')}">行程导航</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--子页框架-->
+
+
+<div id="note_list">
+    <div class="banner">
+        <h2>旅游攻略</h2>
+        <p>发现美丽中国，记录精彩瞬间，保存美好回忆</p>
+    </div>
+    <div class="tag">
+        <div class="cw1200">
+            <a class="cur" href="#">最新游记</a><span></span>
+            <a href="#"></a><span></span>
+            <a href="{:url('index/userinfo/write_note')}">我要写游记</a>
+        </div>
+    </div>
+    <div class="con">
+        <div class="cw1200">
+       
+            <ul class="am-avg-sm-2">
+             {foreach $data as $value}
+                <li>
+                    <div class="box">
+                        <div class="pic">
+                            <div class="cover"><a href="{:url('index/strategy/note',['aid'=>$value['aid']])}"><img class="scale-effect " src="/uploads/{$value['picture']}"/></a></div>
+                            <div class="head"><img src="/static/index/images/head1.jpg"/></div>
+                        </div>
+                        <div class="meta">
+                            <p><a href="{:url('index/strategy/note',['aid'=>$value['aid']])}">{$value['title']}</a></p>
+                            <span>{$value['time']} 作者：{$value['author']}. 独白。<label><img src="/static/index/images/state_icon1.png"/>18</label><label><img src="/static/index/images/state_icon2.png"/>20</label></span>
+                        </div>
+                    </div>
+                </li>
+                 {/foreach}
+                <div class="clear"></div>
+                
+            </ul>
+            
+             
+            
+        </div>
+      <div id="page1">
+                 {$page}
+
+            </div>
+    </div>
+</div>
+
+<!-----------------版底---------------->
+<div id="footer">
+    <div class="cw1200">
+        <div class="line"><img src="/static/index/images/b_line.png"/></div>
+        <div class="b_logo"><img src="/static/index/images/b_logo.png"/></div>
+        <div class="con">
+            <p>河洛文化旅游发展有限公司 版权所有</p>
+            <p>地址：河南省洛阳市孟津县旅游游客接待中心　邮编：471000　电话：0379-60000000　业务电话：0379-6000000</p>
+            <p>Copyright 2016 zgqygc.com All Rights Reserved | 豫ICP备10000000号　技术支持：闪迅</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta charset="utf-8" />
+<meta property="qc:admins" content="1656703477630501171006375" />
+<title>汽车票查询</title>
+<meta name="keywords" content=""/>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<link rel="shortcut icon" href="http://www.chepiao100.com/application/views/statics/images/favicon.ico?201501210011" type="image/x-icon" />
+<link type="text/css" href="/static/index/bus/css/style.css"  rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="/static/index/bus/css/style_1.css" />
+<link type="text/css" rel="stylesheet" href="/static/index/bus/css/style_2.css" />
+<link type="text/css" rel="stylesheet" href="/static/index/bus/css/jquery.autocomplete.css" />
+
+<script>var BaseURL = 'http://www.chepiao100.com/';</script>
+<script type="text/javascript" src="/static/index/bus/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/jquery.datapick.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/jquery.hotcity.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/jquery.hotcode.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/jquery.tablesort.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/common.js"></script>
+<script type="text/javascript" src="/static/index/bus/js/scrolltotop.js"></script>
+</head>
+<body><script type="text/javascript" src="/static/index/bus/js/location.js"></script>
+<link type="text/css" rel="stylesheet" href="/static/index/bus/css/style_3.css" />
+<!-- head -->
+<div class="header">
+	<div class="header-in wrap">
+		<div class="logo-wp">
+	        <span class="bg logo"><a href="" title="">汽车票查询</a></span>		
+		</div>
+		<div class="bg head-new"></div>
+		<div class="head-hd" style="font-size: 20px; margin-bottom: 5px;"><a href="{:url('index/index')}"> 返回首页</a></div>
+		<div class="head-nav" id="head-nav">
+		    <ul>
+		      <li><a href="{:url('index/group/index')}">火车票查询</a></li>
+			  <li><a href="{:url('index/group/qichepiao')}" class="hon2">汽车票查询</a></li>
+			  <li><a href="{:url('index/group/jipiao')}">机票查询</a></li>
+			  
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- head -->
+
+<div class="main-in wrap">
+<!-- start column -->
+<div class="column">
+	<ul>
+	    <li class="hon"><em class="bg qc"></em><a href="{:url('index/group/index')}">汽车票查询</a></li>
+		<li ><em class="bg hb"></em><a href="{:url('index/group/jipiao')}">机票查询</a></li>
+		
+	</ul>
+</div>
+<!-- end column --> 
+
+
+<!-- start cont-form -->
+<div class="cont-form">
+    <div class="bg change"></div>
+	<div class="bg qrcode"></div>
+    <div class="loading"></div>
+	<div class="form_wp space">
+		<form action="{:url('index/group/qichepiao')}" method="get" id="sub_form" name="sub_form">
+		<div class="form_ipt">
+			 <label>出发城市：</label> 
+			 <input type="text" id="startStation" name="startStation" value=""  class="station"/>
+			 <em class="bg hotip" id="startStation_icon" src="startStation"></em>
+		</div>
+		<div class="form_ipt">
+			 <label>到达城市：</label> 
+			 <input type="text" id="arriveStation" name="arriveStation" value="" class="station"/>
+			 <em class="bg hotip" id="arriveStation_icon" src="arriveStation"></em>
+		</div>
+		<div class="form_btn">
+			<input type="submit" class="sub" value=" 查询 " >　
+			<input type="button"  class="res" value=" 重置 " onClick="doRest();">
+		</div>
+		</form>
+	</div>
+</div>
+<!-- end cont-form -->
+</div>
+
+<div class="container wrap">
+
+    <!-- content query -->
+	
+	<div id="tableSort" class="tableSort nodate">
+	
+	<div class="info">
+	    <!-- <h1>北京 → 上海</h1> -->
+		<h1><span class="note">汽车时刻表</span></h1>
+		<!-- <span class="total">共2次车</span> -->
+	</div>
+	
+	<div class="select" box="select">
+		<ul>
+			<li>
+			   <label class="name">发车时间:</label>
+			   <label name="startTime" class="all">全部</label>
+			   <label><input type="checkbox" name="startTime" value=">=06:00&&<=12:00"/>上午(06:00-12:00)</label>
+			   <label><input type="checkbox" name="startTime" value=">=12:00&&<=18:00"/>下午(12:00-18:00)</label>
+			   <label><input type="checkbox" name="startTime" value=">=18:00&&<=24:00"/>晚上(18:00-24:00)</label>
+		   </li>
+	   </ul>  
+	</div>
+
+    <div class="head" box="head">
+	    <ul>
+			<li><div class="ca_start"><span sort="trainCode">出发站</span></div></li>
+			<li><div class="sl_arrive">目的地</div></li>
+			<li><div class="ca_stime"><span sort="startTime">发车时间</span></div></li>
+			<li><div class="ca_price"><span sort="endTime">参考票价</span></div></li>
+			<li><div class="ca_grade">车型</div></li>
+         </ul>
+    </div>
+	
+		<div class="items" box="items">
+	    <ul>
+			{if !empty($data)}
+			{foreach $data as $value}
+        	<li box="item">
+				<div class="list ca_start">
+					<div>
+					<a href="" target="_blank">
+					<span sort="trainCode">{$value['startStation']}</span></a>
+					</div>
+				</div>
+				
+				<div class="list sl_arrive">
+					<div>{$value['arriveStation']}</div>
+				</div>
+				
+				<div class="list ca_stime">
+					<div sort="startTime">{$value['startTime']}</div>
+				</div>
+
+				
+				
+				<div class="list ca_price">
+				    <div sort="endTime">￥{$value['price']}</div>
+				</div>
+				
+				<div class="list ca_grade">
+				    <div>{$value['grade']}</div>
+				</div>
+			</li>
+			{/foreach}
+			{/if}
+				
+	  </ul>
+			
+	</div>
+		<div class="tip">因汽车时刻经常变化，汽车时刻表数据仅供参考</div>
+		</div>
+
+</div>
+<!-- end  container -->
+
+<!-- start footer -->
+
+<!-- end footer -->
+</body>
+</html>

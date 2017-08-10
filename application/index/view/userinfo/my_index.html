@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>我的主页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-------------jquery库-------------->
+  	<script type="text/javascript" src="/static/index/js/jquery-1.8.3.min.js"></script>
+	<!-------------Amazeui---------------->
+    <script type="text/javascript" src="/static/index/js/amazeui.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/index/css/amazeui.css">
+    <!------------核心样式-------------->
+    <link rel="stylesheet" type="text/css" href="/static/index/css/user.css">    
+</head>
+<body>
+
+<!-------------------版头-------------------->
+<div id="header">
+    <div class="cw1000">
+        <!-------------------logo-------------------->
+        <div class="logo"><a title="" href="index.html"></a></div>
+		<!-------------------导航-------------------->
+		<div class="nav">
+			<ul>
+				<li><a title="" href="{:url('index/index/index')}">首页</a><span>|</span></li>
+				<li><a title="" href="{:url('index/scenery/index')}">旅游景点</a><span>|</span></li>
+				<li><a title="" href="{:url('index/goods/index')}">地方特产</a><span>|</span></li>
+				<li><a title="" href="{:url('index/group/index')}">旅游团购</a><span>|</span></li>
+				<li><a title="" href="{:url('index/strategy/index')}">旅游攻略</a><span>|</span></li>
+				<li><a title="" href="{:url('index/travel/index')}">行程导航</a><span>|</span></li>
+				<div class="clear"></div>
+			</ul>
+		</div>
+		<!-------------------用户-------------------->
+		<div class="user">
+			<a class="user-hd" href="#">
+				{if !empty($myinfo['icon'])}
+				<img src="{$myinfo['icon']}"/><b></b>
+				{else}
+				<img src="/static/index/images/user_head_pic.jpg"/><b></b>
+				{/if}
+				
+				<div class="clear"></div>
+			</a>
+			<div class="user-bd">
+                        <div class="integral"><img src="/static/index/images/integral_ico.png"/>当前积分 {$myinfo['score']}</div>
+                        <ul class="nav_sort">
+                            <li><a href="{:url('index/userinfo/my_index')}"><i class="i1"></i>我的主页</a></li>
+                            <li><a href="{:url('index/userinfo/write_note')}"><i class="i2"></i>写游记</a></li>
+                            <li><a href="{:url('index/userinfo/my_note')}"><i class="i9"></i>我的游记</a></li>
+                            <li><a href="{:url('index/userinfo/collection_list')}"><i class="i3"></i>我的收藏</a></li>
+                            <li><a href="{:url('index/userinfo/goods_order')}"><i class="i4"></i>商品订单</a></li>
+                            <li><a href="{:url('index/userinfo/scenic_order')}"><i class="i5"></i>旅游订单</a></li>
+                            <li><a href="{:url('index/userinfo/note_comments')}"><i class="i6"></i>我的评论</a></li>
+                            <li><a href="{:url('index/userinfo/my_info')}"><i class="i7"></i>设置</a></li>
+                            <li><a href="#"><i class="i8"></i>退出</a></li>
+                        </ul>
+                    </div>
+		</div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!-----------------用户banner---------------->
+<div id="user_banner">
+	<div class="pic">
+		<a href="my_head.html">
+				{if !empty($myinfo['icon'])}
+				<img src="{$myinfo['icon']}"/><b></b>
+				{else}
+				<img src="/static/index/images/user_head_pic.jpg"/><b></b>
+				{/if}
+			<div>更换头像</div>
+		</a>
+	</div>
+	<div class="con">
+		<h2>{$myinfo['username']}</h2>
+		<p>人生旅程，不同的是沿途风景以及看风景的心情</p>
+	</div>
+</div>
+<!-----------------快捷导航---------------->
+<div id="quick_nav">
+	<a href="my_index.html"><span class="ico1"><img src="/static/index/images/nav_ico1.png"/></span>个人主页</a>
+	<a href="write_note.html"><span class="ico2"><img src="/static/index/images/nav_ico2.png"/></span>发布游记</a>
+	<a href="my_note.html"><span class="ico7"><img src="/static/index/images/nav_ico7.png"/></span>我的游记</a>
+	<a href="collection_list.html"><span class="ico3"><img src="/static/index/images/nav_ico3.png"/></span>我的收藏</a>
+	<a href="{:url('index/userinfo/goods_order')}"><span class="ico4"><img src="/static/index/images/nav_ico4.png"/></span>商品订单</a>
+	<a href="scenic_order.html"><span class="ico5"><img src="/static/index/images/nav_ico5.png"/></span>旅游订单</a>
+	<a href="note_comments.html"><span class="ico6"><img src="/static/index/images/nav_ico6.png"/></span>我的评论</a>
+</div>
+<!-----------------框架---------------->
+<div class="cw1000">
+	<div class="w280 fl">
+		<div class="public_box">
+			<div class="public_title">
+				<h2>游记评论</h2>
+			</div>
+			<!-----------------首页游记评论---------------->
+			<div class="comments_list">
+				<ul>
+					<li>
+						<div class="note">
+							<div class="pic"><img src="/static/index/images/user_head_pic.jpg"/></div>
+							<div class="con">
+								<a href="#"><h3>长滩岛适合玩几天，行程如何安排？</h3></a>
+								<p>作者：<span>林小巫</span><label>5个评论</label></p>
+							</div>
+						</div>
+						<div class="text">
+							<p>我评论：长滩岛很小，但是怎么呆都不够，如果只是玩3天就够啦，如果有时间，一躺就是一整天</p>
+						</div>
+					</li>
+					
+				</ul>
+				<div class="h_more"><a href="#">共<b>29</b>条评论</a></div>
+			</div>
+		</div>	
+		<!-----------------首页商品评论---------------->
+		<!-- <div class="public_box">
+			<div class="public_title">
+				<h2>商品评论</h2>
+			</div>	
+			
+			<div class="comments_list">
+				<ul>
+					<li>
+						<div class="project">
+							<a href="#"><h3>秘鲁红提500g 葡萄 新鲜水果秘鲁红</h3></a>
+							<label>￥396.0</label>
+						</div>
+						<div class="text">
+							<p>我评论：长滩岛很小，但是怎么呆都不够，如果只是玩3天就够啦，如果有时间，一躺就是一整天</p>
+						</div>
+					</li>
+					
+					
+				</ul>
+				<div class="h_more"><a href="#">共<b>29</b>条评论</a></div>
+			</div>
+		</div> -->
+	</div>
+	<div class="w700 fr">
+		<div class="public_box">
+			<div class="public_title">
+				<h2>我的游记</h2>
+			</div>	
+			<!-----------------游记列表---------------->
+			<div class="note_list">
+			{foreach $data as $value}
+				<ul>
+					<li>
+						<div class="pic"><a href="{:url('index/strategy/note',['aid'=> $value['aid']])}"><img src="/uploads/{$value['picture']}"/></a></div>
+						<div class="con">标题:
+							<a href="{:url('index/strategy/note',['aid'=> $value['aid']])}"><h3>{$value['title']}</h3></a>
+					
+							<div class="user">
+								<span>发表时间：<font>{$value['time']}</font></span>
+								
+							</div>
+							<p>简介: {$value['note']}</p>
+						</div>
+					</li>
+				</ul>
+				{/foreach}
+				<!-- <div class="h_more"><a href="#"><b></b>篇游记</a></div> -->
+			</div>
+		</div>	
+		<div class="public_box">
+			<div class="public_title">
+				<h2>我的收藏</h2>
+			</div>	
+			<!-----------------游记列表---------------->
+			<div class="note_list">
+				<ul>
+					<li>
+						<div class="pic"><img src="/static/index/images/y1.jpg"/></div>
+						<div class="con">
+							<a href="#"><h3>我的2016# 萌哥带我走天崖之爱了爱普吉</h3></a>
+							<div class="user">
+								<span><img src="/static/index/images/state_icon1.png" />作者：<font></font></span>
+								<label><img src="/static/index/images/state_icon1.png" />18</label>
+								<label><img src="/static/index/images/state_icon2.png" />20</label>
+							</div>
+							<p>从和我哥第一次的旅行开始 他就一直想带我去他心心念念的 普｜吉｜岛 然后还有他最爱的普吉上的 皇｜帝｜岛 我们提前半年订的机票 机票订的很冲动 !!!!就是某天看到了亚航大促的推送 时间订在9月29—10月9号 跨过十</p>
+						</div>
+					</li>
+					
+					
+				</ul>
+				<div class="h_more"><a href="#">共<b>29</b>篇收藏</a></div>
+			</div>
+		</div>
+		
+		
+	</div>
+	<div class="clear"></div>
+</div>
+<!-----------------版底---------------->
+<div id="footer">
+	<p>河洛文化旅游发展有限公司 版权所有</p>
+	<p>Copyright 2016 zgqygc.com All Rights Reserved | 豫ICP备10000000号　技术支持：闪迅</p>
+</div>
+</body>
+</html>

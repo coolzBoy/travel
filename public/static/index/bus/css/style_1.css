@@ -1,0 +1,43 @@
+﻿@CHARSET "UTF-8";
+
+/** cal */
+#calendar { display:none; position:absolute; width:440px; height:245px; margin:3px 0 0 3px; color:#55; font-size:12px; font-family:Arial,SimSun,sans-serif; background:#fff; z-index:999; }
+.calendar_nr { position:relative; height:100%; width:440px; border:1px #ccc solid; padding:1px 1px 0px 1px; background:#fff; }
+
+.calendar_title { height:30px; overflow:hidden; margin-top:5px; margin-bottom:15px;}
+.calendar_title .month { float:left; width:218px; height:30px; color:#333333; text-align:center; line-height:24px; font-size:13px; font-weight:bold; }
+.calendar_title .month { font-size:20px; padding-top:8px;}
+
+.calendar_title .month .before, .calendar_title .month .next { display:block; position:absolute; left:8px; top:6px; width:9px; height:30px; cursor:pointer; background:url(../images/path.gif) 0 9px no-repeat;}
+
+.calendar_title .month .next { left:auto; right:8px; background-position:-9px 9px; }
+.calendar_title .month_border { border-left:1px #fff solid; }
+.calendar_title .month_border { font-size:20px; padding-top:8px;}
+
+
+.calendar_content { height:100%; padding:0 0px; overflow:hidden; }
+.calendar_content .month_border { border-left:1px #D0D0D0 solid; }
+.calendar_content .paddingRight{ padding-right:2px; }
+.calendar_content .paddingLeft{ padding-left:2px; }
+
+
+.month_content { float:left; width:216px; padding-bottom:6px; }
+.month_content .week { color:#666; height:28px; line-height:27px; font-weight:bold; border-bottom:1px #D0D0D0 solid; margin-bottom:10px; padding-left:2px;}
+.month_content .week span { padding:0px 8.6px;}
+.month_content .week .orange { color:#C60B02; }
+.month_content table { width:210px; height:150px; margin-left:3px; font-size:13px;}
+.month_content table {background:url(../images/0yue.gif) no-repeat; background-color:#99FF00}
+.month_content table td { width:33px; color:#CDE2E4; height:25px; text-align:center;}
+.month_content table .td_bg { background:#fff; }
+.month_content table td a { width:100%; color:#333; font-weight:bold; text-decoration:none; display:block;padding:2px 0px}
+.month_content table td a:hover { color:#fff; text-decoration:none; background:#00afbc !important; }
+.month_content table td a.orange { color:#C60B02; font-weight:normal; text-align:center !important; }
+.month_content table td a.blue { color:#00F; }
+.month_content table td a.date_select { color:#fff; background:#00AFBC; }
+.month_content table td.date_select { color:#fff; background:#00AFBC; }
+.month_content table td a.date_first_select { color:#fff; background:#00AFBC; }
+.month_content table td.date_first_select { color:#fff; background:#00AFBC; }
+.month_content table td a.date_last_select { color:#fff; background:#6598cd; }
+.month_content table td.date_last_select { color:#fff; background:#6598cd; }
+.month_content table td a.orange:hover { color:#fff; }
+

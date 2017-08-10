@@ -1,0 +1,13 @@
+﻿@CHARSET "UTF-8";
+
+/** hotcity  && hotcode */
+#hotcity_float, #hotcode_float{ display:none; position:relative; width:350px; height:auto; color:#555; font-size:12px; font-family:Arial,SimSun,sans-serif; background:#fff; z-index:1000; }
+.hotcity {width:100%; border:1px #ABADB3 solid; padding:1px 1px 0px 1px; background:#fff; padding:3px 10px;}
+.hotcity_head{ font-size:13px; padding:2px; border-bottom: #BBBBBB dashed 1px; margin-top:3px;}
+
+.hotcity .close{ position:absolute; top:11px; right:-11px; background-image:url("../images/close.png"); width:8px; height:8px; cursor:pointer;}
+.hotcity .content{width:100%; padding:5px 0px; min-height:inherit}
+.hotcity .content table{width:100%}
+.hotcity .content ul{margin:0px; padding:0px;}
+.hotcity .content li{cursor:pointer;}
+.hotcity .content li{float:left; list-style-type:none; text-align:center; padding:3.5px 5px; width:16.5% !important};

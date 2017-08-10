@@ -1,0 +1,225 @@
+<!DOCTYPE >
+<html >
+<head> 
+    <title>商城列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--jquery库-->
+  	<script type="text/javascript" src="/static/index/js/jquery-1.8.3.min.js"></script>
+    <!--Amazeui-->
+    <script type="text/javascript" src="/static/index/js/amazeui.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/index/css/amazeui.css">
+    <!--核心样式-->
+    <link rel="stylesheet" type="text/css" href="/static/index/css/style.css">
+
+</head> 
+<body> 
+<!-- 加载公用的头部文件 -->
+{include file="../application/index/view/top.html" /}
+
+<!-- 导航-->
+            <div class="nav">
+                <ul>
+                    <li><a  href="{:url('index/index/index')}">首页</a></li>
+                    <li><a  class="cur" href="{:url('index/scenery/index')}">旅游景点</a></li>
+                    <li><a  href="{:url('index/goods/index')}">地方特产</a></li>
+                    <li><a  href="{:url('index/group/index')}">车票查询</a></li>
+                    <li><a  href="{:url('index/strategy/index')}">旅游攻略</a></li>
+                    <li><a  href="{:url('index/travel/index')}">行程导航</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<!------------------景区版头-------------------->
+<div id="scenic_head" style="background:url(/static/index/images/888.jpg) no-repeat center;background-size:100%;">
+	<div class="cw1200">
+		<div class="title"><p>游天下</p></div>
+		<a href="#" class="view_gallery" id="botn">查看图库<i class="am-icon-chevron-circle-right"></i></a>
+		
+		<ul style="display:none;" data-am-widget="gallery" class="am-gallery am-avg-sm-2 am-avg-md-3 am-avg-lg-4 am-gallery-default" data-am-gallery="{ pureview: true }" >
+		  <li>
+			<div class="am-gallery-item">
+				<a href="/static/index/images/10F118AC-FE28-4986-A6D0-B9E739F8CFDC.jpg" class="">
+				  <img src="/static/index/images/10F118AC-FE28-4986-A6D0-B9E739F8CFDC.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
+				  <div style="display:none;">
+					<h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
+					<div class="am-gallery-desc">2375-09-26</div>
+					</div>
+				</a>
+			</div>
+		  </li>
+		  <li>
+			<div class="am-gallery-item">
+				<a href="/static/index/images/777.jpg" class="">
+				  <img src="/static/index/images/1458530382234p1aebir9i21s4q2hiiso1ip6msf29.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
+					<h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
+					<div class="am-gallery-desc">2375-09-26</div>
+				</a>
+			</div>
+		  </li>
+		  <li>
+			<div class="am-gallery-item">
+				<a href="/static/index/images/1470142217075p1ap5krur5imd15qq1ims12ojghn2.jpg" class="">
+				  <img src="/static/index/images/1470142217075p1ap5krur5imd15qq1ims12ojghn2.jpg"  alt="不要太担心 只因为我相信"/>
+					<h3 class="am-gallery-title">不要太担心 只因为我相信</h3>
+					<div class="am-gallery-desc">2375-09-26</div>
+				</a>
+			</div>
+		  </li>
+		  <li>
+			<div class="am-gallery-item">
+				<a href="/static/index/images/DD0E49BD-47F5-4B10-85DB-FE2390B91541.jpg" class="">
+				  <img src="/static/index/images/DD0E49BD-47F5-4B10-85DB-FE2390B91541.jpg"  alt="终会走过这条遥远的道路"/>
+					<h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
+					<div class="am-gallery-desc">2375-09-26</div>
+				</a>
+			</div>
+		  </li>
+		  <li>
+			<div class="am-gallery-item">
+				<a href="/static/index/images/banner3.jpg" class="">
+				  <img src="/static/index/images/banner3.jpg"  alt="终会走过这条遥远的道路"/>
+					<h3 class="am-gallery-title">终会走过这条遥远的道路</h3>
+					<div class="am-gallery-desc">2375-09-26</div>
+				</a>
+			</div>
+		  </li>
+		</ul>
+		<script>
+			$("#botn").live("click",function(){
+				$(".am-gallery-item img").click();
+			});
+		
+			$(document).ready(function(){
+				$(".am-icon-chevron-left").attr("class", "am-icon-close");
+			});
+		</script>
+	</div>
+</div>
+<!------------------子页框架-------------------->
+<div id="sub_from">
+    <div class="cw1200">
+		<div class="w810 fl">
+			<!------------------公共盒子-------------------->
+			<div class="public_box bg1">
+				<div class="public_title">
+					<div class="fl"><img src="/static/index/images/from_title_left.png"/></div>
+					<div class="con">
+						<div class="lamp_ico">景区信息</div>
+						<div class="name"></div>
+					</div>
+					<div class="fr"><label>推荐</label><img src="/static/index/images/from_title_right.png"/></div>
+					<div class="clear"></div>
+				</div>
+				<!------------------景区介绍-------------------->
+				{foreach $data as $value}
+				<div id="article">
+					<div class="con">
+						<p>{$value['content']}</p>
+					</div>
+					<div class="map">
+					<!-- 地图可以选附近 -->
+						<!-- <img style="max-width:100%;" src="/static/index/images/map.jpg"/> -->
+					</div>					
+				</div>
+				{/foreach}
+			</div>
+			<!------------------公共盒子-------------------->
+			
+		</div>
+		<div class="w380 fr">
+			<!------------------公共盒子-------------------->
+			<div class="public_box bg2">
+				<div class="public_title">
+					<div class="fl"><img src="/static/index/images/from_title_left.png"/></div>
+					<div class="con">
+						<div class="lamp_ico">在线预定</div>
+						<div class="name"></div>
+					</div>
+					<div class="fr"><img src="/static/index/images/from_title_right.png"/></div>
+					<div class="clear"></div>
+				</div>
+				<!------------------在线预订-------------------->
+				{foreach $data as $value}
+				<div id="online_book">
+					<ul>
+						<li>景区名称：<span>{$value['name']}</span></li>
+						
+						<li>类型：<span>{$value['style']}</span></li>
+						<li>星级：<span>{$value['type']}</span></li>
+						<li>费用：<label>￥{$value['price']}</label></li>
+					</ul>
+					<a class="buy" href="{:url('index/scenery/submit_orders',['sid'=>$value['sid']])}">立即预订</a>
+				</div>
+				{/foreach}
+			</div>
+			
+
+
+			<!------------------公共盒子-------------------->
+			<div class="public_box bg2">
+				<div class="public_title">
+					<div class="fl"><img src="/static/index/images/from_title_left.png"/>推荐景点</div>
+					<div class="con">
+						<div class="lamp_ico"></div>
+						<div class="name"></div>
+					</div>
+					<div class="fr"><img src="/static/index/images/from_title_right.png"/></div>
+					<div class="clear"></div>
+				</div>
+				<!------------------周边推荐-------------------->
+				<div class="peripheral_recom">
+					<ul>
+					{foreach $recommend as $value1}
+						<li>
+							<div class="pic"><a title="" href="#"><img alt="" class="scale-effect" src="/uploads/{$value1['picture']}"/></a></div>
+							<div class="con">
+								<a href="#">{$value1['name']}</a>
+								<p>{$value1['note']}</p>
+								<span>{$value1['style']} </span>
+								<span><label>￥{$value1['price']}</label></b></span>
+
+							</div>
+							<div class="clear"></div>
+						</li>
+						{/foreach}
+						
+					</ul>
+				</div>
+			</div>
+			<!------------------公共盒子-------------------->
+			<div class="public_box bg2">
+				<div class="public_title">
+					<!-- <div class="fl"><img src="/static/index/images/from_title_left.png"/>推荐酒店</div>
+					<div class="con">
+						<div class="lamp_ico"></div>
+						<div class="name"></div>
+					</div>
+					<div class="fr"><img src="/static/index/images/from_title_right.png"/></div>
+					<div class="clear"></div> -->
+				</div>
+				<!------------------周边推荐-------------------->
+				
+			</div>
+		</div>
+		<div class="clear"></div>
+    </div>
+</div>
+
+<!-----------------版底---------------->
+<div id="footer">
+    <div class="cw1200">
+        <div class="line"><img src="/static/index/images/b_line.png"/></div>
+        <div class="b_logo"><img src="/static/index/images/b_logo.png"/></div>
+        <div class="con">
+            <p>中国梦游文化旅游发展有限公司 版权所有</p>
+            <p>地址：北京梦想旅游游客接待中心　　电话：0379-60000000　业务电话：0379-6000000</p>
+            <p>Copyright 2016 zgqygc.com All Rights Reserved | 豫ICP备10000000号　技术支持：清风</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+</body>
+</html>
